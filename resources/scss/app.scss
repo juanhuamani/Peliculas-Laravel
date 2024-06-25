@@ -1,0 +1,12 @@
+@keyframes tobottom {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.animation {
+    animation: tobottom 1s;
+}
