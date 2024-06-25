@@ -23,11 +23,7 @@ class DatabaseSeeder extends Seeder
             'Aventura',
             'Comedia',
             'Drama',
-            'Ciencia Ficción',
-            'Musical',
-            'Romance',
-            'Suspenso',
-            'Terror',
+            'Ciencia Ficción'
         ];
 
         $moviesData  = [
