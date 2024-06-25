@@ -2,7 +2,7 @@
     <x-navbar />
 
     <form action="/" method="GET" class="flex flex-row flex-1">
-        <div class="flex justify-center items-center gap-4 flex-col px-5" style="background: linear-gradient(94deg, rgba(0,0,0,1) 0%, rgba(6,163,216,1) 53%, rgba(34,206,241,1) 100%);">
+        <div class="flex justify-center items-center gap-4 flex-col px-5 bg-gray-400">
             <div class="flex flex-col gap-5">
                 <input type="text" name="searchName" id="searchName" placeholder="Search by name"
                     class="border-2 border-gray-300 bg-gray-600 h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none text-gray-300"
