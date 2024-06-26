@@ -9,16 +9,20 @@ use App\Http\Controllers\MailController;
 
 class RegisterController extends Controller
 {
-    public function show()
+    public function show(Request $request)
     {
-        return view('register');
+        $usernameSend= $request->input('username');
+        $emailSend= $request->input('email');
+        $passwordSend= $request->input('password');
+
+        return view('register' , compact('usernameSend' , 'emailSend' , 'passwordSend'));
     }
     
     public function register(Request $request)
     {   
         // Validate the request
         $request->validate([
-            'username' => 'required',
+            'username' => 'required|unique:users|min:3|max:20',
             'email' => 'required|email|unique:users',
             'password' => 'required',
         ]);

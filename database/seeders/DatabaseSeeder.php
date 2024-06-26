@@ -84,19 +84,13 @@ class DatabaseSeeder extends Seeder
             "Martin Scorsese",
             "Quentin Tarantino",
             "Alfred Hitchcock",
-            "Christopher Nolan",
-            "Stanley Kubrick",
-            "Francis Ford Coppola",
-            "Ridley Scott",
-            "James Cameron",
-            "Pedro Almodóvar"
         ];
 
         User::factory()->create([
             'username' => 'admin',
             'email' => 'admin@admin.com',
             'password' => bcrypt('admin'),
-            'remember_token' => Str::random(10),
+            'remember_token' => Str::random(20),
             'email_verified_at' => now(),
         ]);
 
@@ -128,7 +122,7 @@ class DatabaseSeeder extends Seeder
             ]);
         
             // Attach random categories to the movie
-            $numberOfCategories = min(3, count($categoryIds)); 
+            $numberOfCategories = min(2, count($categoryIds)); 
             $randomCategoryIds = array_rand(array_flip($categoryIds), $numberOfCategories);
             if (!is_array($randomCategoryIds)) {
                 $randomCategoryIds = [$randomCategoryIds];

@@ -18,29 +18,25 @@ class HomeController extends Controller
         $categoriesS = $request->input('categories');
         $directorS = $request->input('directors');
 
-        $query = Movie::query();
-
-        if ($searchName) {
-            $query->where('title', 'like', '%' . $searchName . '%');
-        }
-
-        if ($searchYear) {
-            $query->where('year', $searchYear);
-        }
-
-        if ($categoriesS) {
+        $query = Movie::query()
+            ->when($searchName, function ($q) use ($searchName) {
+            return $q->where('title', 'like', '%' . $searchName . '%');
+            })
+            ->when($searchYear, function ($q) use ($searchYear) {
+            return $q->where('year', $searchYear);
+            })
+            ->when($categoriesS, function ($q) use ($categoriesS) {
             foreach ($categoriesS as $categoryId) {
-                $query->whereHas('categories', function ($q) use ($categoryId) {
-                    $q->where('category_id', $categoryId);
+                $q->whereHas('categories', function ($q) use ($categoryId) {
+                $q->where('category_id', $categoryId);
                 });
             }
-        }
-
-        if ($directorS) {
-            $query->whereHas('director', function ($q) use ($directorS) {
+            })
+            ->when($directorS, function ($q) use ($directorS) {
+            return $q->whereHas('director', function ($q) use ($directorS) {
                 $q->where('id', $directorS);
             });
-        }
+            });
 
         $movies = $query->paginate(3)->appends($request->query());
         $categories = Category::all();
