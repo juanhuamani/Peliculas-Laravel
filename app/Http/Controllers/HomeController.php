@@ -13,35 +13,35 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        $searchName = $request->input('searchName');
-        $searchYear = $request->input('searchYear');
-        $categoriesS = $request->input('categories');
-        $directorS = $request->input('directors');
+        $name = $request->input('searchName');
+        $year = $request->input('searchYear');
+        $category = $request->input('categories');
+        $director = $request->input('directors');
 
         $query = Movie::query()
-            ->when($searchName, function ($q) use ($searchName) {
-            return $q->where('title', 'like', '%' . $searchName . '%');
+            ->when($name, function ($q) use ($name) {
+                return $q->where('title', 'like', '%' . $name . '%');
             })
-            ->when($searchYear, function ($q) use ($searchYear) {
-            return $q->where('year', $searchYear);
+            ->when($year, function ($q) use ($year) {
+                return $q->where('year', $year);
             })
-            ->when($categoriesS, function ($q) use ($categoriesS) {
-            foreach ($categoriesS as $categoryId) {
-                $q->whereHas('categories', function ($q) use ($categoryId) {
-                $q->where('category_id', $categoryId);
+            ->when($category, function ($q) use ($category) {
+                foreach ($category as $categoryId) {
+                    $q->whereHas('categories', function ($q) use ($categoryId) {
+                        $q->where('category_id', $categoryId);
+                    });
+                }
+            })
+            ->when($director, function ($q) use ($director) {
+                return $q->whereHas('director', function ($q) use ($director) {
+                    $q->where('id', $director);
                 });
-            }
-            })
-            ->when($directorS, function ($q) use ($directorS) {
-            return $q->whereHas('director', function ($q) use ($directorS) {
-                $q->where('id', $directorS);
-            });
             });
 
         $movies = $query->paginate(3)->appends($request->query());
         $categories = Category::all();
         $directors = Director::all();
 
-        return view('home' , compact('movies', 'categories', 'directors' , 'searchName' , 'searchYear' , 'categoriesS' , 'directorS'));
+        return view('home',[ 'movies' => $movies, 'categories' => $categories, 'directors' => $directors, 'searchName' => $name , 'searchYear' => $year, 'categoriesS' => $category, 'directorS' => $director ] );
     }
 }

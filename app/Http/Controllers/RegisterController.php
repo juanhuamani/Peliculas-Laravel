@@ -28,14 +28,13 @@ class RegisterController extends Controller
         ]);
 
         // Create a new user
-        $user = new User();
-        $user->username = $request->username;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->remember_token = Str::random(20);
 
-        // Save the user
-        $user->save();
+        $user = User::create([
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'remember_token' => Str::random(20),
+        ]);
         
         // Send the email
         $verifyEmail = MailController::sendMail($user);
