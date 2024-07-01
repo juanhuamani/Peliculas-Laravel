@@ -1,3 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'home.scss';
+@import 'login.scss';
+@import 'register.scss';
+@import 'verifyEmail.scss';
+
 @keyframes tobottom {
     from {
         transform: translateY(-100%);
@@ -9,4 +18,10 @@
 
 .animation {
     animation: tobottom 1s;
+}
+
+.error-text {
+    color: #dc2626; 
+    margin-top: 0.5rem; 
+    font-size: 0.875rem;
 }

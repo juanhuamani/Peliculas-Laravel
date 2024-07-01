@@ -1,5 +1,4 @@
 <x-app-layout title="Verify">
-    @vite(['resources/scss/verifyEmail.scss'])
     <div class="container">
         <!-- Header -->
         <div class="header">

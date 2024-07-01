@@ -1,9 +1,11 @@
 <x-app-layout title="Login">
-    @vite(['resources/scss/login.scss'])
+    <!-- Content -->
     <div class="h-[100vh] flex justify-center items-center flex-col">
         <h1 class="login-title">LOGIN</h1>
         <form class="max-w-sm mx-auto" action="/login" method="POST">
             @csrf
+
+            <!-- Errors -->
             @if ($errors->any())
                 <div x-data="{ show: true }" x-effect="setTimeout(() => show = false, 5000)" x-transition x-show="show">
                     <ul class="absolute animation top-52 ">
@@ -15,12 +17,9 @@
             @endif
             <div class="max-w-sm space-y-3">
                 <div class="relative">
-                    <input type="text"
-                        class="login-input"
-                        placeholder="Enter name"
-                        name="username"
-                        id="username"
-                        required>
+
+                <!-- Input username -->
+                    <input type="text" class="login-input" placeholder="Enter name" name="username" id="username" required>
                     <div
                         class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4 peer-disabled:opacity-50 peer-disabled:pointer-events-none">
                         <svg class="flex-shrink-0 size-4 text-gray-500 dark:text-neutral-500"
@@ -34,12 +33,10 @@
                 </div>
 
                 <div class="relative">
-                    <input type="password"
-                        class="login-input"
-                        placeholder="Enter password"
-                        id="password" 
-                        name="password"
-                        required>
+                
+                <!-- Input password -->
+                    <input type="password" class="login-input" placeholder="Enter password" id="password"
+                        name="password" required>
                     <div
                         class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4 peer-disabled:opacity-50 peer-disabled:pointer-events-none">
                         <svg class="flex-shrink-0 size-4 text-gray-500 dark:text-neutral-500"
@@ -52,10 +49,13 @@
                     </div>
                 </div>
             </div>
-            <button type="submit"
-                class="login-button">
+
+            <!-- Button Search -->
+            <button type="submit" class="login-button">
                 Submit
             </button>
+
+            <!-- Register -->
             <h2 class="mt-8">You do not have an account?<a class="text-blue-600" href="/register">Register</a> </h2>
         </form>
     </div>

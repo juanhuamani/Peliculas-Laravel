@@ -12,7 +12,7 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
         
         <!-- Styles -->
-        @vite(['resources/css/app.css','resources/js/app.js' , 'resources/scss/app.scss'])
+        @vite(['resources/js/app.js' , 'resources/scss/app.scss'])
 
     </head>
     <body class="relative min-h-[100vh] flex flex-col">
