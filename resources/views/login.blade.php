@@ -1,8 +1,7 @@
 <x-app-layout title="Login">
+    @vite(['resources/scss/login.scss'])
     <div class="h-[100vh] flex justify-center items-center flex-col">
-        <h1
-            class="mb-10 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-            LOGIN</h1>
+        <h1 class="login-title">LOGIN</h1>
         <form class="max-w-sm mx-auto" action="/login" method="POST">
             @csrf
             @if ($errors->any())
@@ -17,7 +16,7 @@
             <div class="max-w-sm space-y-3">
                 <div class="relative">
                     <input type="text"
-                        class="peer py-3 px-4 ps-11 block w-full bg-gray-100 border-transparent rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:border-transparent dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                        class="login-input"
                         placeholder="Enter name"
                         name="username"
                         id="username"
@@ -36,7 +35,7 @@
 
                 <div class="relative">
                     <input type="password"
-                        class="peer py-3 px-4 ps-11 block w-full bg-gray-100 border-transparent rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:border-transparent dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                        class="login-input"
                         placeholder="Enter password"
                         id="password" 
                         name="password"
@@ -54,7 +53,7 @@
                 </div>
             </div>
             <button type="submit"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 mt-5 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                class="login-button">
                 Submit
             </button>
             <h2 class="mt-8">You do not have an account?<a class="text-blue-600" href="/register">Register</a> </h2>

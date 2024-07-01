@@ -7,6 +7,8 @@ use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Models\User;
+
 class LoginController extends Controller
 {
     public function index()
@@ -18,8 +20,11 @@ class LoginController extends Controller
     {
         
         $credentials = $request->getCredentials();
+        $credentials['username'] = strtolower($credentials['username']);
 
-        if (!Auth::validate($credentials)) {
+        $user = User::whereRaw('LOWER(username) = ?', [$credentials['username']])->first();
+
+        if (!$user || !Auth::validate(['email' => $user->email, 'password' => $credentials['password']])) {
             return redirect('/login')->withErrors('Invalid credentials');
         }
 
