@@ -4,7 +4,7 @@
         <h1 class="register-title">REGISTER</h1>
 
         <!-- Form -->
-        <form class="max-w-sm mx-auto" action="/register" method="POST">
+        <form class="max-w-sm mx-auto" action={{ route('register') }} method="POST">
             @csrf
 
             <!-- Input Username -->

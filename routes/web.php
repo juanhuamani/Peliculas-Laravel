@@ -22,7 +22,7 @@ Route::middleware([GuestMiddleware::class])->group(function () {
     Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
     Route::get('/login', [LoginController::class, 'index'])->name('login');
-    Route::post('/login', [LoginController::class, 'login']);
+    Route::post('/login', [LoginController::class, 'login'])->name('loginPost');
 });
 
 Route::get('/verify-email/{token}', [MailController::class, 'verifyEmail'])->name('verify-email');

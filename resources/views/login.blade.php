@@ -2,7 +2,7 @@
     <!-- Content -->
     <div class="h-[100vh] flex justify-center items-center flex-col">
         <h1 class="login-title">LOGIN</h1>
-        <form class="max-w-sm mx-auto" action="/login" method="POST">
+        <form class="max-w-sm mx-auto" action={{ route('loginPost') }} method="POST">
             @csrf
 
             <!-- Errors -->

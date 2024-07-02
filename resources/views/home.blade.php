@@ -3,7 +3,7 @@
     <x-navbar />
 
     <!-- Forms -->
-    <form action="/" method="GET" class="flex flex-row flex-1">
+    <form action={{ route('home') }} method="GET" class="flex flex-row flex-1">
         <div class="flex justify-center items-center gap-4 flex-col px-5 bg-gray-400">
             <div class="flex flex-col gap-5">
 
